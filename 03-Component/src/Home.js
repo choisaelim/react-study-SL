@@ -3,6 +3,7 @@ import Child from './view/Child';
 import './Home.css';
 import Person from './view/Person';
 import Counter from './view/Counter';
+import Say from './view/Say';
 
 //rsc
 const Home = () => {
@@ -21,6 +22,9 @@ const Home = () => {
             </div>
             <div className = 'box'>
                 <Counter/>
+            </div>
+            <div className = 'box'>
+                <Say/>
             </div>
         </>
         
