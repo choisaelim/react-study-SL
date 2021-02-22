@@ -3,22 +3,38 @@ import TodoInsert from './components/TodoInsert'
 import TodoList from './components/TodoList'
 import TodoTemplate from './components/TodoTemplate'
 
+function createBulkTodos() {
+    const array = new Array();
+    for(let i = 1 ; i <= 2500 ; i++){
+        array.push(
+            {
+                id: i,
+                text: `할 일 ${i}`,
+                checked: false
+            }
+        )
+    }
+
+    return array;
+    
+}
 const App = () => {
-    const [todos, setTodos] = useState([
-        {
-            id: 1,
-            text: 'React 기초 알아보기',
-            checked: true
-        },{
-            id: 2,
-            text: '컴포넌트 스타일링',
-            checked: true
-        },{
-            id: 3,
-            text: '일정 관리 앱 만들어보기',
-            checked: false
-        }
-    ]);
+    const [todos, setTodos] = useState(createBulkTodos);
+    // useState([
+    //     {
+    //         id: 1,
+    //         text: 'React 기초 알아보기',
+    //         checked: true
+    //     },{
+    //         id: 2,
+    //         text: '컴포넌트 스타일링',
+    //         checked: true
+    //     },{
+    //         id: 3,
+    //         text: '일정 관리 앱 만들어보기',
+    //         checked: false
+    //     }
+    // ]);
 
     const nextId = useRef(4); //렌더링되지 않기 때문에 useRef사용
 
