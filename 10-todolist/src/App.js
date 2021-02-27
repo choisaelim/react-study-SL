@@ -20,6 +20,12 @@ function createBulkTodos() {
 }
 const App = () => {
     const [todos, setTodos] = useState(createBulkTodos);
+    const [number, setNumber] = useState(0);
+
+    const onIncrease = useCallback(
+        () => setNumber(prevNumber => prevNumber + 1),
+        []
+    );
     // useState([
     //     {
     //         id: 1,
@@ -41,12 +47,12 @@ const App = () => {
     const onInsert = useCallback(
         text => {
             const todo = {
-                id: nextId,
+                id: nextId.current,
                 text: text,
                 checked: false
             };
 
-            setTodos(todos.concat(todo));
+            setTodos(todos => todos.concat(todo));
             nextId.current += 1;
         },
         [todos], //todos 바뀔 때만 렌더링
@@ -54,14 +60,14 @@ const App = () => {
 
     const onRemove = useCallback(
         id => {
-            setTodos(todos.filter(todo => todo.id !== id));
+            setTodos(todos => todos.filter(todo => todo.id !== id));
         },
         [todos],
     )
 
     const onToggle = useCallback(
         id => {
-            setTodos(todos.map(
+            setTodos(todos => todos.map(
                 //(...todo, checked) todo 안에 checked를 : 오른쪽(!todo.checked)으로 대체
                 todo => todo.id === id ? {...todo, checked : !todo.checked } : todo
             ));
